@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "es5",
         "moduleResolution": "node",
         "isolatedModules": false,
         "jsx": "react",
@@ -10,12 +10,13 @@
         "declaration": false,
         "noImplicitAny": true,
         "removeComments": true,
-        "noLib": false,
+        "noLib": true,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "dist"
     ],
     "compileOnSave": false,
     "buildOnSave": false,

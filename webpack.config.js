@@ -31,7 +31,7 @@ module.exports = webpackConfig(webpack, options, {
         publicPath: '/',
     },
 
-    devtool: 'eval',
+    devtool: 'inline-source-map',
     devtoolLineToLine: [
         {
             include: path.join(__dirname, 'node_modules')

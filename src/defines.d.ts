@@ -1,4 +1,5 @@
 /// <reference path='../typings/tsd.d.ts' />
+/// <reference path='../node_modules/typescript/lib/lib.es6.d.ts' />
 /// <reference path='./typings/react-common.d.ts' />
 /// <reference path='./typings/redux.d.ts'/>
 /// <reference path='./typings/react-redux.d.ts'/>

@@ -3,7 +3,6 @@ var SELECTOR_MATCHER = /[a-z][_][a-z]|:/;
 var path = require("path");
 var _ = require("lodash");
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 function customizer(objValue, srcValue) {
   if (_.isArray(objValue)) {
@@ -15,7 +14,6 @@ module.exports = function(webpack, options, externalConfig) {
     var config = generate(webpack, options);
     var finalExternalConfig = typeof externalConfig == 'function'
         ? externalConfig({
-            ExtractTextPlugin: ExtractTextPlugin
         })
         : externalConfig;
     _.mergeWith(config, finalExternalConfig, customizer);
@@ -32,13 +30,6 @@ function generate(webpack, options) {
         uglify: !!process.env.BUILD_UGLIFY,
         fork: !process.env.SKIP_FORK,
         externalReact: false,
-        extractTextPlugin: {
-            fileName: 'app.css',
-            options: {
-                allChunks: true,
-                disable: !standalone
-            }
-        },
         define: {},
         babel: {
             include: []
@@ -136,7 +127,7 @@ function generate(webpack, options) {
 
     loaders.push({
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', "css-loader!postcss-loader")
+        loader: 'style-loader!css-loader'
     });
 
     loaders.push({
@@ -194,12 +185,6 @@ function generate(webpack, options) {
     }
 
     config.plugins.push(
-        new webpack.ResolverPlugin(
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-        )
-    );
-
-    config.plugins.push(
         new webpack.DefinePlugin(
             _.merge(
                 {
@@ -226,13 +211,6 @@ function generate(webpack, options) {
             })
         )
     }
-
-    config.plugins.push(
-        new ExtractTextPlugin(
-            options.extractTextPlugin.fileName,
-            options.extractTextPlugin.options
-        )
-    );
 
     return config;
 };
