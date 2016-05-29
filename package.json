@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "awesome-typescript-loader": "^0.18.0",
+    "css-layout": "^1.1.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.17.0",
     "lodash": "^4.13.1",
