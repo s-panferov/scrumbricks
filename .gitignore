@@ -2,3 +2,4 @@ node_modules
 dist
 doc
 build
+npm-debug.log

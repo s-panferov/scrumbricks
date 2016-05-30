@@ -22,6 +22,13 @@ module.exports = webpackConfig(webpack, options, {
     entry: {
         index: [
             './src/entry.js'
+        ],
+        vendor: [
+            "react",
+            "react-dom",
+            "redux",
+            "react-redux",
+            "radium"
         ]
     },
 
@@ -31,7 +38,7 @@ module.exports = webpackConfig(webpack, options, {
         publicPath: '/',
     },
 
-    devtool: 'inline-source-map',
+    devtool: 'eval',
     devtoolLineToLine: [
         {
             include: path.join(__dirname, 'node_modules')
@@ -39,6 +46,9 @@ module.exports = webpackConfig(webpack, options, {
     ],
 
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ["vendor", "manifest"]
+        }),
         new HtmlWebpackPlugin({
             title: 'ScrumBricks',
             filename: '../index.html'
