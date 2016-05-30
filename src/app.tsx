@@ -29,7 +29,7 @@ function build(board: Board) {
     let totalFlex = lanes.reduce<number>((acc, lane) => acc + lane.flex, 0);
     let currentOffset = 0;
     return (
-        <g>
+        <g key='board'>
             {
                 lanes.map(lane => {
                     let laneWidth = width / totalFlex * lane.flex;

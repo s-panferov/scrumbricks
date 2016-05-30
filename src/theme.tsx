@@ -1,2 +1,1 @@
-
-export const font = 'Roboto';
+export const font = '"Roboto", sans-serif';

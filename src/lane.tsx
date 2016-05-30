@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Radium from 'radium';
+import * as theme from './theme';
 
 interface LaneProps {
     left: number;
@@ -15,6 +16,7 @@ export class Lane extends React.Component<LaneProps, any> {
         return (
             <g>
                 <text
+                    key='title'
                     style={ styles.text }
                     x={ textX }
                     y={ 15 }
@@ -23,6 +25,15 @@ export class Lane extends React.Component<LaneProps, any> {
                     { title }
                 </text>
                 <line
+                    key='top-header-line'
+                    style={ styles.line }
+                    x1={ left }
+                    y1={ 0 }
+                    x2={ left + width }
+                    y2={ 0 }
+                />
+                <line
+                    key='bottom-header-line'
                     style={ styles.line }
                     x1={ left }
                     y1={ 20 }
@@ -30,6 +41,15 @@ export class Lane extends React.Component<LaneProps, any> {
                     y2={ 20 }
                 />
                 <line
+                    key='left-line'
+                    style={ styles.line }
+                    x1={ left }
+                    y1={ 0 }
+                    x2={ left }
+                    y2={ '100vh' }
+                />
+                <line
+                    key='right-line'
                     style={ styles.line }
                     x1={ left + width }
                     y1={ 0 }
@@ -43,10 +63,12 @@ export class Lane extends React.Component<LaneProps, any> {
 
 const styles = {
     line: {
-        fill: 'red',
-        stroke: 'red',
+        fill: '#999',
+        stroke: '#999',
     } as React.CSSProperties,
     text: {
-        fontFamily: '"Roboto", sans-serif'
+        fontFamily: theme.font,
+        fontSize: 12,
+        fill: '#666'
     } as React.CSSProperties
 };

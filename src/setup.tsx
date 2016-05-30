@@ -16,9 +16,9 @@ export interface Stream {
 export const board: Board = {
     width: 2000,
     lanes: [
-        { title: 'To Do', flex: 1 },
-        { title: 'In Progress', flex: 2 },
-        { title: 'To Verify', flex: 1 },
-        { title: 'Done', flex: 2 },
+        { title: 'TODO', flex: 1 },
+        { title: 'IN PROGRESS', flex: 2 },
+        { title: 'TO VERIFY', flex: 1 },
+        { title: 'DONE', flex: 2 },
     ]
 };
