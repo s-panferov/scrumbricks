@@ -14,8 +14,7 @@ export interface SvgCanvasProps extends React.CommonProps {
     maxScale?: number;
     minScale?: number;
 
-    renderTopRuller?: boolean;
-    renderLeftRuller?: boolean;
+    renderBackground?: boolean;
 
     defaultScale?: number;
     svgLayerNodes?: React.ReactNode;
@@ -42,8 +41,7 @@ export class SvgCanvas extends React.Component<SvgCanvasProps, SvgCanvasState> {
         defaultScale: 1,
         metaWheel: false,
         metaDrag: false,
-        renderTopRuller: true,
-        renderLeftRuller: true
+        renderBackground: true,
     };
 
     viewMatrix: SVGMatrix;
@@ -122,14 +120,15 @@ export class SvgCanvas extends React.Component<SvgCanvasProps, SvgCanvasState> {
                         viewMatrixComponents={ this.viewMatrixComponents }
                         viewMatrixTransform={ this.viewMatrixTransform }
                         fixed={
-                            <Background
-                                key='bg'
-                                viewMatrix={ this.viewMatrix }
-                                origin={ this.state.origin }
-                                width={ this.state.width }
-                                height={ this.state.height }
-                                scale={ this.state.scale }
-                            />
+                            this.props.renderBackground &&
+                                <Background
+                                    key='bg'
+                                    viewMatrix={ this.viewMatrix }
+                                    origin={ this.state.origin }
+                                    width={ this.state.width }
+                                    height={ this.state.height }
+                                    scale={ this.state.scale }
+                                />
                         }
                     >
                         { this.props.svgLayerNodes }

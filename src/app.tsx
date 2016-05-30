@@ -14,6 +14,7 @@ class App extends React.Component<any, any> {
         return (
             <div style={ styles.app }>
                 <SvgCanvas
+                    renderBackground={ false }
                     svgLayerNodes={[
                         build(board)
                     ]}
