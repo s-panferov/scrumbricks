@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Radium from 'radium';
 import * as theme from './theme';
 
-interface LaneProps {
+interface LaneProps extends React.CommonProps {
     left: number;
     width: number;
     title: string;
@@ -56,6 +56,9 @@ export class Lane extends React.Component<LaneProps, any> {
                     x2={ left + width }
                     y2={ '100vh' }
                 />
+                <g key='tasks'>
+                    { this.props.children }
+                </g>
             </g>
         );
     }

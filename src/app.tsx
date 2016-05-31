@@ -1,15 +1,12 @@
-/// <reference path="./defines.d.ts" />
-
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as Radium from 'radium';
 import { SvgCanvas } from './svg-canvas';
 import { Lane } from './lane';
-
-import { Board, board } from './setup';
+import { Task } from './task';
+import { Lane as LaneModel, Board, board } from './setup';
 
 @Radium
-class App extends React.Component<any, any> {
+export class App extends React.Component<any, any> {
     render() {
         return (
             <div style={ styles.app }>
@@ -40,7 +37,9 @@ function build(board: Board) {
                             title={ lane.title }
                             left={ currentOffset }
                             width={ laneWidth }
-                        />
+                        >
+                            { tasksForLane(lane, board, currentOffset, laneWidth) }
+                        </Lane>
                     );
                     currentOffset += laneWidth;
                     return compiledLane;
@@ -50,6 +49,18 @@ function build(board: Board) {
     );
 }
 
+function tasksForLane(lane: LaneModel, board: Board, left: number, width: number) {
+    const tasks = board.tasks
+        .filter(task => task.lane === lane.id);
+
+    return tasks.map(task => {
+        let users = board.users.filter(user => task.users.indexOf(user.id) !== -1);
+        return (
+            <Task task={ task } users={ users } left={ left + 10 } top={ 30 } />
+        );
+    });
+}
+
 const styles = {
     app: {
         height: '100%',
@@ -57,40 +68,3 @@ const styles = {
         flexDirection: 'column'
     },
 };
-
-export function runApp() {
-    let reactApp = document.createElement('div');
-    document.documentElement.style.height = '100%';
-    document.body.style.height = '100%';
-    document.body.style.margin = '0px';
-    document.body.style.padding = '0px';
-    reactApp.id = 'react-app';
-    reactApp.style.height = '100%';
-    document.body.appendChild(reactApp);
-
-    render(reactApp);
-}
-
-export function render(reactApp: HTMLElement) {
-    ReactDOM.render(
-        <App />,
-        reactApp
-    );
-}
-
-export function webFont() {
-    (window as any).WebFontConfig = {
-        google: { families: ['Roboto:400,300,500,700:latin,cyrillic'] }
-    };
-    (function () {
-        const wf = document.createElement('script');
-        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = true;
-        const s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-    })();
-}
-
-webFont();
-runApp();
