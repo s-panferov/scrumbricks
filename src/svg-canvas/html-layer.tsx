@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Radium from 'radium';
 
 export interface HtmlLayerProps extends React.CommonProps  {
     htmlProps?: React.DOMAttributes;
@@ -10,7 +11,8 @@ export interface HtmlLayerProps extends React.CommonProps  {
 
 export interface HtmlLayerState { }
 
-export default class HtmlLayer extends React.Component<HtmlLayerProps, HtmlLayerState> {
+@Radium
+export class HtmlLayer extends React.Component<HtmlLayerProps, HtmlLayerState> {
     static defaultProps = {
         viewMatrix: SVGMatrix
     };
@@ -22,10 +24,6 @@ export default class HtmlLayer extends React.Component<HtmlLayerProps, HtmlLayer
 
     getCanvas(): SVGSVGElement {
         return this.refs.canvas;
-    }
-
-    constructor(props: HtmlLayerProps) {
-        super(props);
     }
 
     render(): React.ReactElement<any> {

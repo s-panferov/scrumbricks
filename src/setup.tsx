@@ -29,7 +29,7 @@ export interface Task {
     lane: string;
 }
 
-export const board: Board = {
+export const initialBoard: Board = {
     width: 2000,
     lanes: [
         { id: 'todo', title: 'TODO', flex: 1 },

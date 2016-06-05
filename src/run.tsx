@@ -4,8 +4,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { App } from './app';
 
+let { AppContainer } = require('react-hot-loader');
+
+let reactApp: HTMLElement;
 export function runApp() {
-    let reactApp = document.createElement('div');
+    reactApp = document.createElement('div');
     document.documentElement.style.height = '100%';
     document.body.style.height = '100%';
     document.body.style.margin = '0px';
@@ -17,11 +20,19 @@ export function runApp() {
     render(reactApp);
 }
 
-export function render(reactApp: HTMLElement) {
+export function render(reactApp: HTMLElement, AppImpl = App) {
     ReactDOM.render(
-        <App />,
+        <AppContainer>
+            <AppImpl />
+        </AppContainer>,
         reactApp
     );
+}
+
+if (module.hot) {
+  module.hot.accept('./app.tsx', () => {
+    render(reactApp, require('./app.tsx').App);
+  });
 }
 
 export function webFont() {

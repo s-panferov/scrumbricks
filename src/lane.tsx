@@ -3,75 +3,45 @@ import * as Radium from 'radium';
 import * as theme from './theme';
 
 interface LaneProps extends React.CommonProps {
-    left: number;
-    width: number;
     title: string;
 }
 
 @Radium
-export class Lane extends React.Component<LaneProps, any> {
+export class LaneView extends React.Component<LaneProps, any> {
     render() {
-        let { left, width, title } = this.props;
-        let textX = left + width/2;
         return (
-            <g>
-                <text
-                    key='title'
-                    style={ styles.text }
-                    x={ textX }
-                    y={ 15 }
-                    textAnchor='middle'
-                >
-                    { title }
-                </text>
-                <line
-                    key='top-header-line'
-                    style={ styles.line }
-                    x1={ left }
-                    y1={ 0 }
-                    x2={ left + width }
-                    y2={ 0 }
-                />
-                <line
-                    key='bottom-header-line'
-                    style={ styles.line }
-                    x1={ left }
-                    y1={ 20 }
-                    x2={ left + width }
-                    y2={ 20 }
-                />
-                <line
-                    key='left-line'
-                    style={ styles.line }
-                    x1={ left }
-                    y1={ 0 }
-                    x2={ left }
-                    y2={ '100vh' }
-                />
-                <line
-                    key='right-line'
-                    style={ styles.line }
-                    x1={ left + width }
-                    y1={ 0 }
-                    x2={ left + width }
-                    y2={ '100vh' }
-                />
-                <g key='tasks'>
+            <div style={ styles.lane }>
+                <div style={ styles.header }>
+                    <div style={ styles.text }>{ this.props.title }</div>
+                </div>
+                <div style={ styles.body }>
                     { this.props.children }
-                </g>
-            </g>
+                </div>
+            </div>
         );
     }
 }
 
 const styles = {
-    line: {
-        fill: '#999',
-        stroke: '#999',
-    } as React.CSSProperties,
+    lane: {
+        minWidth: '300px',
+        borderRight: '1px solid #ccc',
+        borderTop: '1px solid #ccc',
+        borderBottom: '1px solid #ccc',
+    },
+    header: {
+        borderBottom: '1px solid #ccc',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '30px',
+    },
     text: {
         fontFamily: theme.font,
         fontSize: 12,
         fill: '#666'
-    } as React.CSSProperties
+    } as React.CSSProperties,
+    body: {
+
+    }
 };

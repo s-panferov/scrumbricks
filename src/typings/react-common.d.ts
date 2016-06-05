@@ -4,6 +4,7 @@ declare namespace __React {
         key?: string | number;
         ref?: string | ((component: any) => any);
         className?: string | { toString(): string };
+        style?: __React.CSSProperties;
         role?: string;
     }
 

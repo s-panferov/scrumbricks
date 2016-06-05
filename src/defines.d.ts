@@ -6,6 +6,12 @@
 /// <reference path='./typings/redux-thunk.d.ts'/>
 /// <reference path='./typings/history.d.ts'/>
 
+interface NodeModule {
+    hot: {
+        accept: (name: string, cb: () => any) => void
+    };
+}
+
 declare const NODE_ENV: string;
 
 /**

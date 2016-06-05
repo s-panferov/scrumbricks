@@ -40,8 +40,9 @@ var devServerConfing = {
 };
 
 if (!STANDALONE) {
-    cliOptions.entry.index.unshift('webpack/hot/only-dev-server');
+    cliOptions.entry.index.unshift('webpack/hot/dev-server');
     cliOptions.entry.index.unshift('webpack-dev-server/client?http://localhost:8080');
+    cliOptions.entry.index.unshift('react-hot-loader/patch');
 }
 
 // webpack(cliOptions).run(function (err, stats) {

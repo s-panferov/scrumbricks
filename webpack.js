@@ -107,7 +107,7 @@ function generate(webpack, options) {
         loaders.push({
             test: /\.jsx?$/,
             loaders: [
-                !options.standalone ? "react-hot" : null,
+                !options.standalone ? "react-hot-loader/webpack" : null,
             ].filter(Boolean),
             include: options.babel.include
         });

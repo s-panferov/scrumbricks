@@ -5,7 +5,7 @@
   "main": "dev-server.js",
   "dependencies": {},
   "devDependencies": {
-    "awesome-typescript-loader": "^0.18.0",
+    "awesome-typescript-loader": "^0.19.0",
     "css-layout": "^1.1.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.17.0",
@@ -19,7 +19,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
     "tslint": "^3.10.0-dev.3",
-    "typescript": "^1.9.0-dev.20160529-1.0",
+    "typescript": "^1.9.0-dev.20160605-1.0",
     "webpack": "^2.1.0-beta.7",
     "webpack-dev-server": "^2.1.0-beta.0"
   },
