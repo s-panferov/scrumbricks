@@ -4,6 +4,7 @@
 /// <reference path='./typings/redux.d.ts'/>
 /// <reference path='./typings/react-redux.d.ts'/>
 /// <reference path='./typings/redux-thunk.d.ts'/>
+/// <reference path='./typings/react-dnd.d.ts'/>
 /// <reference path='./typings/history.d.ts'/>
 
 interface NodeModule {
