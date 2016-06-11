@@ -8,9 +8,9 @@
 /// <reference path='./typings/history.d.ts'/>
 
 interface NodeModule {
-    hot: {
-        accept: (name: string, cb: () => any) => void
-    };
+	hot: {
+		accept: (name: string, cb: () => any) => void
+	};
 }
 
 declare const NODE_ENV: string;
@@ -20,18 +20,18 @@ declare const NODE_ENV: string;
  */
 
 interface WebpackRequireEnsureCallback {
-    (req: WebpackRequire): void;
+	(req: WebpackRequire): void;
 }
 
 interface WebpackRequire {
-    (id: string): any;
-    (paths: string[], callback: (...modules: any[]) => void): void;
-    ensure(ids: string[], callback: WebpackRequireEnsureCallback, chunkName?: string): void;
-    context(directory: string, useSubDirectories?: boolean, regExp?: RegExp): WebpackContext;
+	(id: string): any;
+	(paths: string[], callback: (...modules: any[]) => void): void;
+	ensure(ids: string[], callback: WebpackRequireEnsureCallback, chunkName?: string): void;
+	context(directory: string, useSubDirectories?: boolean, regExp?: RegExp): WebpackContext;
 }
 
 interface WebpackContext extends WebpackRequire {
-    keys(): string[];
+	keys(): string[];
 }
 
 interface NodeRequire extends WebpackRequire {
