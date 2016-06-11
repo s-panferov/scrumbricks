@@ -1,13 +1,9 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as Radium from 'radium';
 
 import { LaneView } from './lane';
 import { TaskView } from './task';
-import {
-    Lane,
-    Board
-} from './setup';
+import { Lane, Board } from './models';
 
 interface BoardProps {
     board: Board;
@@ -32,7 +28,7 @@ const styles = {
 };
 
 function build(board: Board) {
-    let { width, lanes } = board;
+    let { lanes } = board;
     return (
         lanes.map(lane => {
             let compiledLane = (

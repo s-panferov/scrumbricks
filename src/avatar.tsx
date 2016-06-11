@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as Radium from 'radium';
 
 import { getGravatarUrl } from './lib/gravatar';
