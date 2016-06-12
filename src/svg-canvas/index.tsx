@@ -33,6 +33,22 @@ export interface SvgCanvasState {
 	height?: number
 }
 
+interface MouseEventPoint {
+	clientX: number
+	clientY: number
+}
+
+export interface TransformProps {
+	viewMatrix?: SVGMatrix
+	viewMatrixTransform?: string
+	viewMatrixComponents?: number[]
+	origin?: Point
+	width?: number
+	height?: number
+	scale?: number
+	translateMouseEvent?: (e: Point | MouseEventPoint) => Point
+}
+
 @Radium
 export class SvgCanvas extends React.Component<SvgCanvasProps, SvgCanvasState> {
 	static defaultProps = {
@@ -272,11 +288,11 @@ export class SvgCanvas extends React.Component<SvgCanvasProps, SvgCanvasState> {
 	}
 
 	@autobind
-	translateMouseEvent(e: { clientX: number, clientY: number}): Point {
+	translateMouseEvent(e: MouseEventPoint | Point): Point {
 		let canvas = this.refs.svgLayer.getCanvas()
 		let pt = canvas.createSVGPoint()
-		pt.x = e.clientX
-		pt.y = e.clientY
+		pt.x = (e as any).clientX || (e as any).x
+		pt.y = (e as any).clientY || (e as any).y
 		const matrix = canvas.getScreenCTM()
 		pt = pt.matrixTransform(matrix.inverse())
 		pt = pt.matrixTransform(this.viewMatrix.inverse())

@@ -5,25 +5,36 @@ import * as theme from './theme'
 import { Avatar } from './avatar'
 import { Task, User } from './models'
 
-interface TaskProps {
+export interface TaskViewProps extends React.CommonProps {
 	task: Task
 	users: User[]
+	connectDragSource?: (el: React.ReactElement<any>) => void
 }
 
 @Radium
-export class TaskView extends React.Component<TaskProps, any> {
+export class TaskView extends React.Component<TaskViewProps, any> {
 	render() {
+		const { task, connectDragSource } = this.props
+		const header = this.renderHeader()
+		return (
+			<div style={[ s.task, this.props.style ]} onMouseDown={ (e) => e.stopPropagation() }>
+				{ connectDragSource
+					? connectDragSource(header)
+					: header }
+				<div key='title' style={ s.title }>{ task.title }</div>
+			</div>
+		)
+	}
+
+	renderHeader() {
 		const { task, users } = this.props
 		return (
-			<div style={ s.task }>
-				<div style={ s.header }>
-					<Avatar key='avatar'
-						style={ s.avatar }
-						gravatar={ users[0].email }
-					/>
-					<div key='id' style={ s.id }>{ task.id }</div>
-				</div>
-				<div key='title' style={ s.title }>{ task.title }</div>
+			<div style={ s.header }>
+				<Avatar key='avatar'
+					style={ s.avatar }
+					gravatar={ users[0].email }
+				/>
+				<div key='id' style={ s.id }>{ task.id }</div>
 			</div>
 		)
 	}
@@ -31,9 +42,9 @@ export class TaskView extends React.Component<TaskProps, any> {
 
 const s = {
 	task: {
+		backgroundColor: 'white',
 		margin: '10px',
-		padding: '5px',
-		minWidth: '250px',
+		width: '250px',
 		minHeight: '50px',
 		boxShadow: theme.shadow
 	},
@@ -43,8 +54,8 @@ const s = {
 	header: {
 		borderBottom: '1px solid #eee',
 		display: 'flex',
+		padding: '5px',
 		alignItems: 'center',
-		paddingBottom: '5px',
 		marginBottom: '5px'
 	},
 	id: {
@@ -53,6 +64,7 @@ const s = {
 	},
 	title: {
 		fontFamily: theme.font,
+		padding: '5px',
 		fontSize: '14px',
 	}
 }

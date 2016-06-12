@@ -3,6 +3,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { App } from './app'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 let { AppContainer } = require('react-hot-loader')
 
@@ -20,10 +22,15 @@ export function runApp() {
 	render(reactApp)
 }
 
+
 export function render(reactApp: HTMLElement, AppImpl = App) {
+	const AppWithDragContext = DragDropContext(HTML5Backend)(AppImpl)
+
 	ReactDOM.render(
 		<AppContainer>
-			<AppImpl />
+			<AppWithDragContext>
+				<AppImpl />
+			</AppWithDragContext>
 		</AppContainer>,
 		reactApp
 	)

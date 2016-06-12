@@ -1,11 +1,9 @@
 import * as React from 'react'
 import * as Radium from 'radium'
+import { TransformProps } from './index'
 
-export interface HtmlLayerProps extends React.CommonProps  {
+export interface HtmlLayerProps extends React.CommonProps, TransformProps  {
 	htmlProps?: React.DOMAttributes
-	viewMatrix?: SVGMatrix
-	viewMatrixTransform?: string
-	viewMatrixComponents?: number[]
 	fixed?: React.ReactNode
 }
 

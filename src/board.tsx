@@ -2,18 +2,24 @@ import * as React from 'react'
 import * as Radium from 'radium'
 
 import { LaneView } from './lane'
-import { TaskView } from './task'
+import { TaskDrag } from './task-drag'
 import { Lane, Board } from './models'
+import { TransformProps } from './svg-canvas'
 
 interface BoardProps {
 	board: Board
 }
 
+type P = BoardProps & TransformProps
+
 @Radium
-export class BoardView extends React.Component<any, any> {
+export class BoardView extends React.Component<P, any> {
+
 	render() {
+		let transform = this.props.viewMatrixTransform
+		let style = { transform }
 		return (
-			<div style={ styles.board }>
+			<div style={[ styles.board, style ]}>
 				{ build(this.props.board) }
 			</div>
 		)
@@ -23,7 +29,13 @@ export class BoardView extends React.Component<any, any> {
 const styles = {
 	board: {
 		display: 'flex',
-		flexDirection: 'row'
+		flexDirection: 'row',
+		position: 'absolute',
+		margin: 0,
+		padding: 0,
+		top: 0,
+		left: 0,
+		transformOrigin: '0 0'
 	}
 }
 
@@ -51,7 +63,7 @@ function tasksForLane(lane: Lane, board: Board) {
 	return tasks.map(task => {
 		let users = board.users.filter(user => task.users.indexOf(user.id) !== -1)
 		return (
-			<TaskView key={ task.id } task={ task } users={ users } />
+			<TaskDrag key={ task.id } task={ task } users={ users } />
 		)
 	})
 }
