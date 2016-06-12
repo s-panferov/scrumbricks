@@ -3,7 +3,7 @@ import * as Radium from 'radium'
 import * as theme from './theme'
 
 import { Avatar } from './avatar'
-import { Task, User } from './models'
+import { Task, User } from '../models'
 
 export interface TaskViewProps extends React.CommonProps {
 	task: Task

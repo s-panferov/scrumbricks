@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as Radium from 'radium'
-import autobind from '../lib/autobind'
+import autobind from '../../lib/autobind'
 
 import SvgLayer from './svg-layer'
 import Background from './bg'

@@ -3,7 +3,7 @@ import * as Radium from 'radium'
 
 import { LaneView } from './lane'
 import { TaskDrag } from './task-drag'
-import { Lane, Board } from './models'
+import { Lane, Board } from '../models'
 import { TransformProps } from './svg-canvas'
 
 interface BoardProps {

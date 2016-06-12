@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Radium from 'radium'
 
-import { getGravatarUrl } from './lib/gravatar'
+import { getGravatarUrl } from '../lib/gravatar'
 
 interface AvatarProps extends React.CommonProps {
 	src?: string

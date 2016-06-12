@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Radium from 'radium'
 
-import { Task, Board } from './models'
+import { Task, Board } from '../models'
 import { TaskView } from './task'
 import { DragLayer, ClientOffset } from 'react-dnd'
 import { TransformProps } from './svg-canvas'

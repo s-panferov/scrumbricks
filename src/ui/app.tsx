@@ -2,9 +2,8 @@ import * as React from 'react'
 import * as Radium from 'radium'
 import { SvgCanvas } from './svg-canvas'
 import { BoardView } from './board'
-import { BoardDragLayer } from './BoardDragLayer'
-import { initialBoard } from './setup'
-import { HtmlLayer } from './svg-canvas/html-layer'
+import { BoardDragLayer } from './board-drag-layer'
+import { initialBoard } from '../setup'
 import * as theme from './theme'
 
 @Radium

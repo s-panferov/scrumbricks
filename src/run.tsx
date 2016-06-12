@@ -2,11 +2,11 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { App } from './app'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-
 let { AppContainer } = require('react-hot-loader')
+
+import { App } from './ui/app'
 
 let reactApp: HTMLElement
 export function runApp() {
@@ -37,8 +37,8 @@ export function render(reactApp: HTMLElement, AppImpl = App) {
 }
 
 if (module.hot) {
-	module.hot.accept('./app.tsx', () => {
-		render(reactApp, require('./app.tsx').App)
+	module.hot.accept('./ui/app.tsx', () => {
+		render(reactApp, require('./ui/app.tsx').App)
 	})
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { DragType } from './drag'
-import { Task } from './models'
+import { Task } from '../models'
 import { TaskView, TaskViewProps } from './task'
 import { getEmptyImage } from 'react-dnd-html5-backend'
 import {
