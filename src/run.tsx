@@ -7,6 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 let { AppContainer } = require('react-hot-loader')
 
 import { App } from './ui/app'
+import { setupRedux, Provider } from './redux'
 
 let reactApp: HTMLElement
 export function runApp() {
@@ -22,15 +23,19 @@ export function runApp() {
 	render(reactApp)
 }
 
+import { initialBoard } from './setup'
+let store = setupRedux(initialBoard);
 
 export function render(reactApp: HTMLElement, AppImpl = App) {
 	const AppWithDragContext = DragDropContext(HTML5Backend)(AppImpl)
 
 	ReactDOM.render(
 		<AppContainer>
-			<AppWithDragContext>
-				<AppImpl />
-			</AppWithDragContext>
+			<Provider store={ store }>
+				<AppWithDragContext>
+					<AppImpl />
+				</AppWithDragContext>
+			</Provider>
 		</AppContainer>,
 		reactApp
 	)

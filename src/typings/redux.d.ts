@@ -4,22 +4,21 @@ declare module 'redux' {
     }
 
     interface FSA<T, P, M> extends Action<T> {
-        payload: P | Error;
+        payload?: P | Error;
         error?: boolean;
         meta?: M;
     }
 
-    interface NoErrorFSA<T, P, M> extends Action<T> {
-        payload: P;
-        meta?: M;
+    interface SafeFSA<T, P, M> extends FSA<T, P, M> {
+        payload?: P;
     }
 
-    interface ActionFunction<S, A, R> {
+    interface Thunk<S, A, R> {
         (dispatch: Dispatch<S, A>, getState: () => S): R;
     }
 
     interface ActionCreator<S, A> {
-        (...args: any[]): A | ActionFunction<S, A, any>;
+        (...args: any[]): A | Thunk<S, A, any>;
     }
 
     interface ActionCreators<S, A> {
@@ -36,7 +35,7 @@ declare module 'redux' {
 
     interface Dispatch<S, A> {
         (action: A): A;
-        <R>(action: ActionFunction<S, A, R>): R;
+        <R>(action: Thunk<S, A, R>): R;
     }
 
     interface StoreMethods<S, A> {
