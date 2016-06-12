@@ -1,18 +1,18 @@
 import * as React from 'react'
 import * as Radium from 'radium'
-import * as theme from './theme'
+import * as theme from '../theme'
 
-import { Avatar } from './avatar'
-import { Task, User } from '../models'
+import { Avatar } from '../avatar'
+import { Task, User } from '../../models'
 
-export interface TaskViewProps extends React.CommonProps {
+export interface TaskUIProps extends React.CommonProps {
 	task: Task
 	users: User[]
 	connectDragSource?: (el: React.ReactElement<any>) => void
 }
 
 @Radium
-export class TaskView extends React.Component<TaskViewProps, any> {
+export class TaskUI extends React.Component<TaskUIProps, any> {
 	render() {
 		const { task, connectDragSource } = this.props
 		const header = this.renderHeader()

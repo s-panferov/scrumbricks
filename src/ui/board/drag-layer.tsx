@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as Radium from 'radium'
-
-import { Task, Board } from '../models'
-import { TaskView } from './task'
 import { DragLayer, ClientOffset } from 'react-dnd'
-import { TransformProps } from './svg-canvas'
+
+import { Task, Board } from '../../models'
+import { TaskUI } from '../task'
+import { TransformProps } from '../svg-canvas'
 
 interface BoardProps {
 	board: Board
@@ -65,7 +65,7 @@ export class BoardDragLayer extends React.Component<P, any> {
 
 		return (
 			<div style={ style }>
-				<TaskView task={ item } users={ board.users } />
+				<TaskUI task={ item } users={ board.users } />
 			</div>
 		)
 	}

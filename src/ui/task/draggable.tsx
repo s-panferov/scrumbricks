@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { DragType } from './drag'
-import { Task } from '../models'
-import { TaskView, TaskViewProps } from './task'
+import { DragType } from '../drag'
+import { Task } from '../../models'
+import { TaskUI, TaskUIProps } from './task'
 import { getEmptyImage } from 'react-dnd-html5-backend'
 import {
 	DragSource,
@@ -17,9 +17,9 @@ interface DragProps {
 	isDragging?: boolean
 }
 
-type P = TaskViewProps & DragProps;
+type P = TaskUIProps & DragProps;
 
-const source: DragSourceSpec<TaskViewProps> = {
+const source: DragSourceSpec<TaskUIProps> = {
 	beginDrag(props): Task {
 		return props.task
 	}
@@ -34,7 +34,7 @@ function collect(connect: DragSourceConnector, monitor: DragSourceMonitor): Drag
 }
 
 @DragSource<P>(DragType.Task, source, collect)
-export class TaskDrag extends React.Component<P, void> {
+export class DraggableTask extends React.Component<P, void> {
 	componentDidMount?() {
 		this.props.connectDragPreview(getEmptyImage(), {
 			captureDraggingState: true
@@ -49,7 +49,7 @@ export class TaskDrag extends React.Component<P, void> {
 				: 1
 		}
 		return (
-			<TaskView
+			<TaskUI
 				{ ...this.props }
 				style={[ this.props.style, style ]}
 				connectDragSource={ connectDragSource }

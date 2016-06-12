@@ -1,8 +1,7 @@
 import * as React from 'react'
 import * as Radium from 'radium'
 import { SvgCanvas } from './svg-canvas'
-import { BoardView } from './board'
-import { BoardDragLayer } from './board-drag-layer'
+import { BoardUI, BoardDragLayer } from './board'
 import { initialBoard } from '../setup'
 import * as theme from './theme'
 
@@ -14,7 +13,7 @@ export class App extends React.Component<any, any> {
 				<SvgCanvas
 					renderBackground={ false }
 				>
-					<BoardView board={ initialBoard } />
+					<BoardUI board={ initialBoard } />
 					<BoardDragLayer board={ initialBoard } />
 				</SvgCanvas>
 			</div>
