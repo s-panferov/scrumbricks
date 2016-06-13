@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Radium from 'radium'
 
-import { LaneView } from '../lane'
+import { LaneUI } from '../lane'
 import { DraggableTask } from '../task'
 import { Lane, Board } from '../../models'
 import { TransformProps } from '../svg-canvas'
@@ -44,12 +44,12 @@ function build(board: Board) {
 	return (
 		lanes.map(lane => {
 			let compiledLane = (
-				<LaneView
+				<LaneUI
 					key={ lane.title }
 					title={ lane.title }
 				>
 					{ tasksForLane(lane, board) }
-				</LaneView>
+				</LaneUI>
 			)
 			return compiledLane
 		})

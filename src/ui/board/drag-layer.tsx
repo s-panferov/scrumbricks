@@ -20,13 +20,15 @@ interface DragLayerProps {
 
 type P = BoardProps & DragLayerProps & TransformProps
 
-@DragLayer<P>(monitor => ({
-	item: monitor.getItem(),
-	itemType: monitor.getItemType(),
-	initialSourceOffset: monitor.getInitialSourceClientOffset(),
-	diff: monitor.getDifferenceFromInitialOffset(),
-	isDragging: monitor.isDragging()
-}))
+@DragLayer<P>(monitor => {
+	return {
+		item: monitor.getItem(),
+		itemType: monitor.getItemType(),
+		initialSourceOffset: monitor.getInitialSourceClientOffset(),
+		diff: monitor.getDifferenceFromInitialOffset(),
+		isDragging: monitor.isDragging()
+	}
+})
 @Radium
 export class BoardDragLayer extends React.Component<P, any> {
 

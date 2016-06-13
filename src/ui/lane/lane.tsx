@@ -1,13 +1,13 @@
 import * as React from 'react'
 import * as Radium from 'radium'
-import * as theme from './theme'
+import * as theme from '../theme'
 
-interface LaneProps extends React.CommonProps {
+interface LaneUIProps extends React.CommonProps {
 	title: string
 }
 
 @Radium
-export class LaneView extends React.Component<LaneProps, any> {
+export class LaneUI extends React.Component<LaneUIProps, any> {
 	render() {
 		return (
 			<div style={ styles.lane }>
